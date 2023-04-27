@@ -1,0 +1,82 @@
+/* Set background color of page */
+body {
+    background-color: white;
+  }
+  
+  /* Set title style */
+  .title {
+    font-size: 40px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #343a40;
+    margin: 20px;
+  }
+  
+  /* Set description style */
+  .description {
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #343a40;
+    margin: 20px;
+  }
+  
+  /* Set star rating style */
+  .star-rating {
+    font-size: 30px;
+    color: #e3e3e3;
+    margin: 20px;
+  }
+  
+  .star-rating i {
+    cursor: pointer;
+  }
+  
+  .star-rating i:hover {
+    color: #ffc107;
+  }
+  
+  .star-rating i.yellow {
+    color: #ffc107;
+  }
+  
+  /* Set box style */
+  .box {
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    margin: 20px;
+    padding: 20px;
+  }
+  
+  /* Set image style */
+  .img-container {
+    margin: 20px;
+  }
+  
+  .img-container img {
+    max-width: 100%;
+  }
+  
+  /* Set card style */
+  .card {
+    margin: 20px;
+    width: 300px;
+    display: inline-block;
+  }
+  
+  .card img {
+    max-width: 100%;
+  }
+  
+  .card-body {
+    padding: 10px;
+  }
+  
+  .card-title {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .card-text {
+    font-size: 16px;
+    color: #6c757d;
+  }
+  

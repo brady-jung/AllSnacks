@@ -5,9 +5,26 @@ from models import *
 app = Flask(__name__)
 
 @app.route("/")
+def base():
+    if request.method == "GET":
+            return render_template("home_page.html")
+
+@app.route("/home")
 def home():
     if request.method == "GET":
+            return render_template("home_page.html")
+
+@app.route("/login")
+def login():
+    if request.method == "GET":
             return render_template("login_page.html")
+
+@app.route("/snack")
+def snack():
+    if request.method == "GET":
+            return render_template("snack_page.html")
+
+
 
 # TODO: Change the secret key
 app.secret_key = "Change Me"
