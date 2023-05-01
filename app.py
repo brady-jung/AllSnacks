@@ -24,6 +24,11 @@ def snack():
     if request.method == "GET":
             return render_template("snack_page.html")
 
+@app.route("/account")
+def account():
+    if request.method == "GET":
+            return render_template("account_page.html")
+
 
 
 # TODO: Change the secret key

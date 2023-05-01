@@ -19,11 +19,16 @@ body {
     margin-top: 10px;
     margin-bottom: 10px;
   }
+
+  .row {
+    margin-top: 50px;
+  }
   
   .card-body img {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    padding: 50px;
     width: 200px;
     height: 500px;
     object-fit: contain;

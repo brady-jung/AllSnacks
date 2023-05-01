@@ -1,4 +1,4 @@
-.snack-box {
+.profile-box {
 	width: 100%;
 	height: 100vh;
 	background-color: #f8f9fa;
@@ -6,7 +6,7 @@
 	flex-direction: row;
 }
 
-.snack-image {
+.profile-image {
 	width: 50%;
 	height: 100%;
 	background-color: #e9ecef;
@@ -21,7 +21,7 @@
 	background-color: #cfd8dc;
 }
 
-.snack-info {
+.profile-info {
 	width: 50%;
 	height: 100%;
 	padding: 50px;
@@ -31,40 +31,24 @@
 	justify-content: center;
 }
 
-.snack-title {
+.profile-title {
 	margin-bottom: 30px;
 }
 
-.snack-title h1 {
+.profile-title h1 {
 	font-size: 36px;
 	color: #343a40;
 	font-weight: bold;
 }
 
-.snack-description {
+.profile-bio {
 	margin-bottom: 30px;
 }
 
-.snack-description p {
+.profile-bio p {
 	font-size: 24px;
 	color: #343a40;
 }
 
-.stars {
-	font-size: 36px;
-	color: #343a40;
-}
-
-.star {
-	cursor: pointer;
-}
-
-.star:hover {
-	color: #ffc107;
-}
-
-.stars i.active {
-  color: #ffc107;
-}
 
 
