@@ -32,7 +32,7 @@ def account():
 
 
 # TODO: Change the secret key
-app.secret_key = "Change Me"
+app.secret_key = "deez"
 
 # TODO: Fill in methods and routes
 
