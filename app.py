@@ -12,7 +12,15 @@ def base():
 @app.route("/home")
 def home():
     if request.method == "GET":
-            return render_template("home_page.html")
+            return render_template("home_page.html", 
+                                    snack1="/static/images/doritos.png", 
+                                    snack2="/static/images/hot_fries.jpeg", 
+                                    snack3="/static/images/pringles.png",
+                                    title1="Doritos",
+                                    title2="Hot Fries",
+                                    title3="Pringles")
+
+            
 
 @app.route("/login")
 def login():
@@ -41,4 +49,4 @@ def setup():
     init_db()
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, port=5001)

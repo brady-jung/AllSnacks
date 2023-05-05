@@ -45,3 +45,7 @@ class Snack(Base):
     picture = Column("picture", TEXT)
     #posts = relationship("Post", back_populates="snacks")
     
+    def __init__(self, name, rating, picture):
+        self.name = name
+        self.rating = rating
+        self.picture = picture
