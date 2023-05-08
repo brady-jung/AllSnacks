@@ -38,3 +38,13 @@ body {
     font-size: 14px;
   }
   
+ .center-button {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  
+ }
+
+  .card_title {
+    text-align: center;
+  }

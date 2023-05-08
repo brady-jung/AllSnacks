@@ -7,35 +7,112 @@ app = Flask(__name__)
 @app.route("/")
 def base():
     if request.method == "GET":
-            return render_template("home_page.html")
+        snacknames = []
+        snackname = db_session.query(Snack.name).all()
+        for name in snackname:
+            snacknames.append(name[0])
+
+
+        snackpics = []
+        snackpic = db_session.query(Snack.picture).all()
+        for picture in snackpic:
+            snackpics.append(picture[0])
+            
+        
+        return render_template("home_page.html", 
+                                snack1=snackpics[0], 
+                                snack2=snackpics[1], 
+                                snack3=snackpics[2],
+                                title1=snacknames[0],
+                                title2=snacknames[1],
+                                title3=snacknames[2],
+                                snack1_page = "/snack/doritos",
+                                snack2_page = "/snack/lays",
+                                snack3_page = "/snack/cheetos")
 
 @app.route("/home")
 def home():
     if request.method == "GET":
-            return render_template("home_page.html", 
-                                    snack1="/static/images/doritos.png", 
-                                    snack2="/static/images/hot_fries.jpeg", 
-                                    snack3="/static/images/pringles.png",
-                                    title1="Doritos",
-                                    title2="Hot Fries",
-                                    title3="Pringles")
+        snacknames = []
+        snackname = db_session.query(Snack.name).all()
+        for name in snackname:
+            snacknames.append(name[0])
+
+        snackpics = []
+        snackpic = db_session.query(Snack.picture).all()
+        for picture in snackpic:
+            snackpics.append(picture[0])
+       
+            
+        
+        return render_template("home_page.html", 
+                                snack1=snackpics[0], 
+                                snack2=snackpics[1], 
+                                snack3=snackpics[2],
+                                title1=snacknames[0],
+                                title2=snacknames[1],
+                                title3=snacknames[2],
+                                snack1_page = "/snack/doritos",
+                                snack2_page = "/snack/lays",
+                                snack3_page = "/snack/cheetos")
+                                
+                                   
 
             
 
 @app.route("/login")
 def login():
     if request.method == "GET":
-            return render_template("login_page.html")
+        return render_template("login_page.html")
+
+@app.route("/signup", methods=["GET", "POST"])
+def signup():
+    if request.method == "GET":
+        # Code for handling GET requests
+        return render_template("signup_page.html")
+    elif request.method == "POST":
+        # Code for handling POST requests
+        username = request.form["username"]
+        password = request.form["password"]
+        conf_password = request.form["conf_password"]
+        key = request.form[key]
+
+        if password == conf_password:
+            count = len(db_session.query(User).where(username = User.name).all())
+            if count > 0:
+                flash("Username already taken, try again", "error")
+        else:
+            flash("Logged in successfully!", "error")
+        
+    else:
+        # Code for handling other request methods
+        return
+
+        
+        
 
 @app.route("/snack")
 def snack():
     if request.method == "GET":
             return render_template("snack_page.html")
 
+@app.route("/snack/<snack>")
+def choice(snack):
+    if(snack=="doritos"):
+        return render_template("doritos.html",snack=snack)
+    elif(snack=="lays"):
+        return render_template("lays.html",snack=snack)
+    elif(snack=="cheetos"):
+        return render_template("cheetos.html",snack=snack)
+    else:
+        return redirect(url_for("home_page.html"))
+
 @app.route("/account")
 def account():
     if request.method == "GET":
             return render_template("account_page.html")
+
+
 
 
 
