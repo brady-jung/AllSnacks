@@ -56,26 +56,8 @@ def home():
                                 snack1_page = "/snack/doritos",
                                 snack2_page = "/snack/lays",
                                 snack3_page = "/snack/cheetos")
-                                
-                                   
 
-        snackpics = []
-        snackpic = db_session.query(Snack.picture).all()
-        for picture in snackpic:
-            snackpics.append(picture[0])
-       
-            
-        
-        return render_template("home_page.html", 
-                                snack1=snackpics[0], 
-                                snack2=snackpics[1], 
-                                snack3=snackpics[2],
-                                title1=snacknames[0],
-                                title2=snacknames[1],
-                                title3=snacknames[2],
-                                snack1_page = "/snack/doritos",
-                                snack2_page = "/snack/lays",
-                                snack3_page = "/snack/cheetos")
+                                                            
                                 
                                    
 
