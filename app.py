@@ -38,6 +38,29 @@ def home():
         snackname = db_session.query(Snack.name).all()
         for name in snackname:
             snacknames.append(name[0])
+<<<<<<< HEAD
+=======
+
+        snackpics = []
+        snackpic = db_session.query(Snack.picture).all()
+        for picture in snackpic:
+            snackpics.append(picture[0])
+       
+            
+        
+        return render_template("home_page.html", 
+                                snack1=snackpics[0], 
+                                snack2=snackpics[1], 
+                                snack3=snackpics[2],
+                                title1=snacknames[0],
+                                title2=snacknames[1],
+                                title3=snacknames[2],
+                                snack1_page = "/snack/doritos",
+                                snack2_page = "/snack/lays",
+                                snack3_page = "/snack/cheetos")
+                                
+                                   
+>>>>>>> f90fec7e561631d8f2a930fdddec544b98334b55
 
         snackpics = []
         snackpic = db_session.query(Snack.picture).all()
@@ -65,6 +88,7 @@ def home():
 def login():
     if request.method == "GET":
         return render_template("login_page.html")
+<<<<<<< HEAD
     elif request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
@@ -78,6 +102,8 @@ def login():
             flash("No user exists with that username / password, try again", "message")
             time.sleep(1)
             return redirect(url_for("login"))
+=======
+>>>>>>> f90fec7e561631d8f2a930fdddec544b98334b55
 
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
@@ -89,6 +115,7 @@ def signup():
         username = request.form["username"]
         password = request.form["password"]
         conf_password = request.form["conf_password"]
+<<<<<<< HEAD
 
         if password == conf_password:
             count = db_session.query(User).where(username == User.username).count()
@@ -108,6 +135,20 @@ def signup():
             flash("Passwords do not match", "error")
             time.sleep(1)
             return redirect(url_for("signup"))
+=======
+        key = request.form[key]
+
+        if password == conf_password:
+            count = len(db_session.query(User).where(username = User.name).all())
+            if count > 0:
+                flash("Username already taken, try again", "error")
+        else:
+            flash("Logged in successfully!", "error")
+        
+    else:
+        # Code for handling other request methods
+        return
+>>>>>>> f90fec7e561631d8f2a930fdddec544b98334b55
 
         
         
@@ -134,6 +175,8 @@ def account():
         curr_acc = db_session.query(User).where(User.username == session["username"]).first()
         return render_template("account_page.html", username = curr_acc.username,
                                                     password = curr_acc.password)
+
+
 
 
 
