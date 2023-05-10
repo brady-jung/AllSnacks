@@ -10,6 +10,9 @@ snack3 = Snack("Cheetos", 5, "/static/images/cheetos.webp")
 db_session.add_all([snack1, snack2, snack3])
 db_session.commit()
 
+
+
+
 # test data to make sure relationships work
 #db_session.add_all()
 #db_session.commit()

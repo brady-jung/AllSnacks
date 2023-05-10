@@ -1,6 +1,7 @@
 from flask import *
 from database import init_db, db_session
 from models import *
+import time
 
 app = Flask(__name__)
 
@@ -60,10 +61,23 @@ def home():
 
             
 
-@app.route("/login")
+@app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "GET":
         return render_template("login_page.html")
+    elif request.method == "POST":
+        username = request.form["username"]
+        password = request.form["password"]
+        user_list = db_session.query(User).where((username == User.username) & (password == User.password)).all()
+        if len(user_list) > 0:
+            session["username"] = username
+            flash("Successfully logged in!", "message")
+            time.sleep(1)
+            return redirect(url_for("home"))
+        else:
+            flash("No user exists with that username / password, try again", "message")
+            time.sleep(1)
+            return redirect(url_for("login"))
 
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
@@ -75,18 +89,25 @@ def signup():
         username = request.form["username"]
         password = request.form["password"]
         conf_password = request.form["conf_password"]
-        key = request.form[key]
 
         if password == conf_password:
-            count = len(db_session.query(User).where(username = User.name).all())
+            count = db_session.query(User).where(username == User.username).count()
             if count > 0:
                 flash("Username already taken, try again", "error")
+                time.sleep(1)
+                return redirect(url_for("signup"))
+            else:
+                temp = User(username = username, password = password)
+                db_session.add(temp)
+                db_session.commit()
+                session["username"] = username
+                flash("Signed up successfully!", "error")
+                time.sleep(1)
+                return redirect(url_for("home"))
         else:
-            flash("Logged in successfully!", "error")
-        
-    else:
-        # Code for handling other request methods
-        return
+            flash("Passwords do not match", "error")
+            time.sleep(1)
+            return redirect(url_for("signup"))
 
         
         
@@ -110,7 +131,9 @@ def choice(snack):
 @app.route("/account")
 def account():
     if request.method == "GET":
-            return render_template("account_page.html")
+        curr_acc = db_session.query(User).where(User.username == session["username"]).first()
+        return render_template("account_page.html", username = curr_acc.username,
+                                                    password = curr_acc.password)
 
 
 
@@ -118,7 +141,6 @@ def account():
 
 # TODO: Change the secret key
 app.secret_key = "deez"
-
 # TODO: Fill in methods and routes
 
 @app.before_first_request

@@ -14,9 +14,9 @@ class User(Base):
     __tablename__ = "users"
 
     # Columns
-    id = Column("id", INTEGER, primary_key=True)
-    name = Column("name", TEXT)
-    email = Column("email", TEXT)
+    id = Column("id", INTEGER, primary_key=True, autoincrement=True)
+    username = Column("username", TEXT)
+    password = Column("password", TEXT)
     #points = Column("points", INTEGER) #Stretch Goal
     #followers and following Stretch Goal
     #posts = relationship("Post" back_populates="person")

@@ -36,25 +36,31 @@
       <div class="row justify-content-center">
         <div class="login-box">
           <h1>Login</h1>
-          <form>
+          <form method="POST">
             <div class="form-group">
               <label for="username">Username</label>
-              <input type="text" class="form-control" id="username" placeholder="Enter username">
+              <input type="text" class="form-control" id="username" name="username" placeholder="Enter username">
             </div>
             <div class="form-group">
               <label for="password">Password</label>
-              <input type="password" class="form-control" id="password" placeholder="Enter password">
+              <input type="password" class="form-control" id="password" name="password" placeholder="Enter password">
             </div>
             <div class="form-group">
               <div class="d-flex justify-content-between">
                 <button type="submit" class="btn btn-danger btn-lg btn-block">Login</button>
                 <a href="/signup">
                   <button type="button" class="btn btn-link btn-sm">Don't have an account? Sign up</button>
-                </a>
-                
+                </a>   
               </div>
             </div>
           </form>
+          {% with messages = get_flashed_messages() %}
+                {%if messages %}
+                    {%for message in messages %}
+                        <p>{{message}}</p>
+                    {% endfor%}
+                {%endif%}
+            {% endwith %}
         </div>        
       </div>
     </div>
