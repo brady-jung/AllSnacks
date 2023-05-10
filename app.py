@@ -80,6 +80,16 @@ def login():
             flash("No user exists with that username / password, try again", "message")
             time.sleep(1)
             return redirect(url_for("login"))
+    
+@app.route("/logout", methods=["GET", "POST"])
+def logout():
+    if "username" in session:
+        session.pop("username")
+        flash("Logged out!", "message")
+        return redirect(url_for("login"))
+    else: 
+        flash("No user logged in", "message")
+        return redirect(url_for("login"))
 
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
@@ -133,9 +143,14 @@ def choice(snack):
 @app.route("/account")
 def account():
     if request.method == "GET":
-        curr_acc = db_session.query(User).where(User.username == session["username"]).first()
-        return render_template("account_page.html", username = curr_acc.username,
+        if "username" in session:
+            curr_acc = db_session.query(User).where(User.username == session["username"]).first()
+            return render_template("account_page.html", username = curr_acc.username,
                                                     password = curr_acc.password)
+        else: 
+            flash("No user signed in, please log in", "message")
+            return render_template("login_page.html")
+            #say they arent loggged in so  theres no account page
 
 
 
